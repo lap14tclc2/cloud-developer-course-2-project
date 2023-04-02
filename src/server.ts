@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import fs from 'fs';
 import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
 (async () => {
@@ -37,7 +36,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 		}
 
 		try {
-			const filtered_image_url = await filterImageFromURL(image_url);
+			const filtered_image_url = await filterImageFromURL(image_url.toString());
 			res.status(200).sendFile(filtered_image_url);
 
 			res.on('finish', () => {
